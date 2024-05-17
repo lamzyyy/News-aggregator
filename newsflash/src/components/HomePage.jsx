@@ -8,7 +8,7 @@ function HomePage(){
         keyword: '',
         selectedOptions: [],
         sources: [],
-        categories: [],
+        categories: '',
         startDate: '',
         endDate: '',
     })

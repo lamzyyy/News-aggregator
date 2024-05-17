@@ -14,8 +14,8 @@ const Handlers = () => {
     };
 
     const handleCategoryChange = (selectedOptions) => {
-        const categories = selectedOptions.map(option => option.value).join("&category=");
-        setFormData({ ...formData, categories });
+        setFormData({ ...formData, categories: selectedOptions.value});
+        
     };
 
     const handleStartDateChange = (event) => {

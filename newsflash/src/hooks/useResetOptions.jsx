@@ -14,7 +14,7 @@ const useResetOptions = () => {
   
       // Reset categories if not selected
       if (!formData.selectedOptions.some(option => option.value === 'categories')) {
-        updatedFormData.categories = [];
+        updatedFormData.categories = '';
       }
   
       // Reset dates if not selected

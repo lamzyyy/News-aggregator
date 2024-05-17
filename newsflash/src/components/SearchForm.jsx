@@ -3,7 +3,7 @@ import { HomeContext } from "../Contexts/HomeContext";
 import useResetOptions from "../hooks/useResetOptions";
 import FilterButton from "./FilterButton";
 import { buildNewsOrgUrl } from "../utilities/newsOrg/Url-Builder";
-import { fetchNewsOrg } from "../utilities/newsOrg/api"
+import { fetchAllNewsOrg } from "../utilities/newsOrg/api"
 
 function SearchForm() {
   useResetOptions();
@@ -17,7 +17,7 @@ function SearchForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const filteredNews = await fetchNewsOrg(formData, finalUrl)
+    const filteredNews = await fetchAllNewsOrg(formData, finalUrl)
     console.log(finalUrl)
     setNews(filteredNews)
   };

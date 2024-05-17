@@ -1,7 +1,8 @@
 
  export const buildNewsOrgUrl = (formData) => {
     const { VITE_API_KEY_1 } = import.meta.env;
-    const apiUrl = "https://newsapi.org/v2/top-headlines?language=en&";
+    const apiUrl = "https://newsapi.org/v2/everything?language=en&sortBy=popularity&";
+    const categoryApiUrl = "https://newsapi.org/v2/top-headlines?language=en&sortBy=popularity&";
     const queryParams = [];
 
     if (formData.categories.length !== 0) {
@@ -16,7 +17,12 @@
     
 
     // Add keyword and query parameters only if there are any query parameters
-    let finalUrl = `${apiUrl}q=${formData.keyword}`;
+    let finalUrl;
+     if (formData.categories.length){
+        finalUrl= `${categoryApiUrl}q=${formData.keyword}`;
+     }else{
+        finalUrl= `${apiUrl}q=${formData.keyword}`;  
+     }
     if (queryParams.length > 0) {
         finalUrl += `&${queryParams.join("&")}`;
     }

@@ -57,7 +57,6 @@ const FilterButton = () =>{
                 { value: "sports", label: "Sports" },
                 { value: "technology", label: "Technology" }
               ]}
-              isMulti
               hideSelectedOptions={false}
               onChange={handleCategoryChange}
               styles={customStyles}
