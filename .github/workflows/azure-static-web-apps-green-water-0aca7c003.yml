@@ -42,7 +42,7 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "./newsflash" # App source code path
           api_location: "" # Api source code path - optional
-          output_location: "newsflash/dist" # Built app content directory - must match Vite's output directory
+          output_location: "dist" # Built app content directory - must match Vite's output directory
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
