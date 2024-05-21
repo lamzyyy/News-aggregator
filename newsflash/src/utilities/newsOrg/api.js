@@ -1,16 +1,22 @@
 import axios from "axios";
 const fetchNewsOrg = async (formData, finalUrl) => {
-  let filteredData = []; // Define and initialize filteredData outside the try block
+  let fetchedData = []; // Define and initialize filteredData outside the try block
 
   try {
     const response = await axios.get(finalUrl);
-    filteredData = response.data.articles;
-    console.log(filteredData);
+    fetchedData = response.data.articles;
   } catch (error) {
     console.error("Error fetching data:", error);
   }
-  return filteredData;
+  return fetchedData;
 };
+
+export async function fetchNewsOrgPage(formData, url, pageNumber) {
+  const newUrl = `${url}&page=${pageNumber}`
+  let fetchedData = await fetchNewsOrg(formData, newUrl);
+  console.log(fetchedData); 
+  return fetchedData;
+}
 
 export async function fetchAllNewsOrg(formData, url) {
   let results = [];
@@ -18,7 +24,7 @@ export async function fetchAllNewsOrg(formData, url) {
   let fetchedData;
 
   do {
-    const newUrl = `${url}&page=${pageNumber}`; // Assuming the API uses 'page' query parameter for pagination
+    const newUrl = `${url}&page=${pageNumber}`; 
     fetchedData = await fetchNewsOrg(formData, newUrl);
     if (formData.sources.length > 0) {
       fetchedData = fetchedData.filter((article) =>
@@ -29,6 +35,6 @@ export async function fetchAllNewsOrg(formData, url) {
     pageNumber++;
   } while (fetchedData.length > 0 && pageNumber <= 5); // Continue fetching while there are results
 
-  console.log("Filtered data:", fetchedData);
+  console.log("Filtered data:", results);
   return results;
 }

@@ -18,11 +18,14 @@
 
     // Add keyword and query parameters only if there are any query parameters
     let finalUrl;
-     if (formData.categories.length){
+    if (formData.categories.length){
         finalUrl= `${categoryApiUrl}q=${formData.keyword}`;
-     }else{
+    }else if(formData.sources.length && !formData.categories.length){
+        finalUrl= `${apiUrl}q=${formData.keyword}&sources=${formData.sources.join(",")}`;
+    }
+    else{
         finalUrl= `${apiUrl}q=${formData.keyword}`;  
-     }
+    }
     if (queryParams.length > 0) {
         finalUrl += `&${queryParams.join("&")}`;
     }

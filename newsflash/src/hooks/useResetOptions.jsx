@@ -1,7 +1,7 @@
 import { HomeContext } from "../Contexts/HomeContext";
 import { useContext, useEffect } from "react";
 const useResetOptions = () => {
-    const { formData, setFormData } = useContext(HomeContext);
+    const { formData, setFormData, setPageNumber } = useContext(HomeContext);
   
     useEffect(() => {
       // Accumulate changes to formData
@@ -10,6 +10,7 @@ const useResetOptions = () => {
       // Reset sources if not selected
       if (!formData.selectedOptions.some(option => option.value === 'sources')) {
         updatedFormData.sources = [];
+      
       }
   
       // Reset categories if not selected
@@ -21,6 +22,7 @@ const useResetOptions = () => {
       if (!formData.selectedOptions.some(option => option.value === 'dates')) {
         updatedFormData.startDate = '';
         updatedFormData.endDate = '';
+        
       }
   
       // Update formData with accumulated changes

@@ -14,10 +14,11 @@ function HomePage(){
     })
     const { availableSources, sourceLoading, sourceError } = useFetchSources();
     const sourcesData = { availableSources, sourceLoading, sourceError };
-
+    const [pageNumber, setPageNumber] = useState(1);
+    const [hasMorePages, setHasMorePages] = useState(true);
     
     return(
-        <HomeContext.Provider value={{formData, setFormData, sourcesData}}>
+        <HomeContext.Provider value={{formData, setFormData, sourcesData, pageNumber, setPageNumber, hasMorePages, setHasMorePages}}>
             {<SearchForm />}
         </HomeContext.Provider>
     )

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { HomeContext } from "../Contexts/HomeContext";
 
 const Handlers = () => {
-    const { formData, setFormData } = useContext(HomeContext);
+    const { formData, setFormData,} = useContext(HomeContext);
 
     const handleOptionChange = (selectedOptions) => {
         setFormData({ ...formData, selectedOptions });
@@ -15,7 +15,7 @@ const Handlers = () => {
 
     const handleCategoryChange = (selectedOptions) => {
         setFormData({ ...formData, categories: selectedOptions.value});
-        
+
     };
 
     const handleStartDateChange = (event) => {
@@ -25,7 +25,6 @@ const Handlers = () => {
     const handleEndDateChange = (event) => {
         setFormData({ ...formData, endDate: event.target.value });
     };
-
     return {
         handleOptionChange,
         handleSourceChange,
