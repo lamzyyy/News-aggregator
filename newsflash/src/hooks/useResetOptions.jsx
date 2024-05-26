@@ -1,28 +1,33 @@
-import { HomeContext } from "../Contexts/HomeContext";
+// Library Imports
 import { useContext, useEffect } from "react";
+// Local Imports
+import { HomeContext } from "../Data-Management/HomeContext";
+import { isSourceSelected, isCategorySelected } from "../constants/index";
+
 const useResetOptions = () => {
-    const { formData, setFormData, setPageNumber } = useContext(HomeContext);
-  
+    const { formData, setFormData} = useContext(HomeContext);
+     
     useEffect(() => {
       // Accumulate changes to formData
       const updatedFormData = { ...formData };
   
       // Reset sources if not selected
-      if (!formData.selectedOptions.some(option => option.value === 'sources')) {
+      if (!isSourceSelected(formData.selectedOptions)) {
         updatedFormData.sources = [];
       
       }
   
       // Reset categories if not selected
-      if (!formData.selectedOptions.some(option => option.value === 'categories')) {
+      if  (!isCategorySelected(formData.selectedOptions)) {
         updatedFormData.categories = '';
       }
   
       // Reset dates if not selected
-      if (!formData.selectedOptions.some(option => option.value === 'dates')) {
+      if  (!formData.startDate) {
         updatedFormData.startDate = '';
+      }
+      if  (!formData.endDate) {
         updatedFormData.endDate = '';
-        
       }
   
       // Update formData with accumulated changes

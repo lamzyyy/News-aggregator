@@ -1,9 +1,13 @@
+//Library Imports
 import { useState, useContext, useEffect } from "react";
-import { HomeContext } from "../Contexts/HomeContext";
+
+// Local Imports
+import { HomeContext } from "../Data-Management/HomeContext";
 import useResetOptions from "../hooks/useResetOptions";
 import FilterButton from "./FilterButton";
-import { buildNewsOrgUrl } from "../utilities/newsOrg/Url-Builder";
-import { fetchAllNewsOrg, fetchNewsOrgPage } from "../utilities/newsOrg/api"
+import { buildNewsOrgUrl } from "../utilities/Url-Builder";
+import { fetchNewsOrgPage } from "../utilities/api"
+import { maximumPagesAllowed, maxPageSize, defaultPage} from "../constants";
 
 function SearchForm() {
   useResetOptions();
@@ -13,18 +17,18 @@ function SearchForm() {
   console.log(pageNumber)
   
   const handleNextPage = async () => {
-    if (pageNumber < 5){
+    if (pageNumber < maximumPagesAllowed){
       setPageNumber(prevPageNumber => prevPageNumber + 1);
       const filteredNews = await fetchNewsOrgPage(formData, finalUrl, pageNumber + 1);
       setNews(filteredNews);
       // Check if there are more pages to fetch
-      if (filteredNews.length < 100 || pageNumber === 4) {
+      if (filteredNews.length < maxPageSize || pageNumber === maximumPagesAllowed) {
         setHasMorePages(false);
       }
     }
   };
   const handlePreviousPage = async () => {
-    if (pageNumber > 1) {
+    if (pageNumber > defaultPage) {
       setPageNumber(prevPageNumber => prevPageNumber - 1);
       const filteredNews = await fetchNewsOrgPage(formData, finalUrl, pageNumber - 1);
       setNews(filteredNews);
@@ -34,18 +38,16 @@ function SearchForm() {
 
   useEffect(() => {
     setFinalUrl(buildNewsOrgUrl(formData));
-
   }, [formData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     let filteredNews = [];
-    if (formData.categories.length && formData.sources.length) {
+   /* if (formData.categories.length && formData.sources.length) {
       filteredNews = await fetchAllNewsOrg(formData, finalUrl);
-    }
-    else{
-     filteredNews = await fetchNewsOrgPage(formData, finalUrl, pageNumber);
-    }
+    }*/
+    
+    filteredNews = await fetchNewsOrgPage(formData, finalUrl, pageNumber);
     console.log(finalUrl)
     setNews(filteredNews)
   };
@@ -70,7 +72,7 @@ function SearchForm() {
             setHasMorePages(true);
           }}>Search</button>
           {hasMorePages && (<button onClick={handleNextPage}>Next Page</button>)}
-          { pageNumber !== 1 && (<button onClick={handlePreviousPage}>Previous Page</button>)}
+          { pageNumber !== defaultPage && (<button onClick={handlePreviousPage}>Previous Page</button>)}
           </div>
         <div>
           <FilterButton />

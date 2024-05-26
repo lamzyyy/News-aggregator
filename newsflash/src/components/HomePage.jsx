@@ -1,27 +1,13 @@
-import SearchForm from "./SearchForm" 
-import {HomeContext} from "../Contexts/HomeContext"
-import { useState } from "react"
-import useFetchSources from "../hooks/useFetchSources";
+// Local Imports
+import SearchForm from "./SearchForm";
+import { HomeProvider } from "../Data-Management/HomeContext";
 
-function HomePage(){
-    const [formData, setFormData] = useState({
-        keyword: '',
-        selectedOptions: [],
-        sources: [],
-        categories: '',
-        startDate: '',
-        endDate: '',
-    })
-    const { availableSources, sourceLoading, sourceError } = useFetchSources();
-    const sourcesData = { availableSources, sourceLoading, sourceError };
-    const [pageNumber, setPageNumber] = useState(1);
-    const [hasMorePages, setHasMorePages] = useState(true);
-    
-    return(
-        <HomeContext.Provider value={{formData, setFormData, sourcesData, pageNumber, setPageNumber, hasMorePages, setHasMorePages}}>
-            {<SearchForm />}
-        </HomeContext.Provider>
-    )
+function HomePage() {
+  return (
+    <HomeProvider>
+      <SearchForm />
+    </HomeProvider>
+  );
 }
- 
-export default HomePage
+
+export default HomePage;

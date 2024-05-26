@@ -1,5 +1,6 @@
+// Library Imports
 import { useContext } from "react";
-import { HomeContext } from "../Contexts/HomeContext";
+import { HomeContext } from "../Data-Management/HomeContext";
 
 const Handlers = () => {
     const { formData, setFormData,} = useContext(HomeContext);

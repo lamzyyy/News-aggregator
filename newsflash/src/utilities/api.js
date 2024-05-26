@@ -1,7 +1,8 @@
+// Library Imports
 import axios from "axios";
+
 const fetchNewsOrg = async (formData, finalUrl) => {
   let fetchedData = []; // Define and initialize filteredData outside the try block
-
   try {
     const response = await axios.get(finalUrl);
     fetchedData = response.data.articles;
@@ -17,7 +18,7 @@ export async function fetchNewsOrgPage(formData, url, pageNumber) {
   console.log(fetchedData); 
   return fetchedData;
 }
-
+/*
 export async function fetchAllNewsOrg(formData, url) {
   let results = [];
   let pageNumber = 1;
@@ -38,3 +39,4 @@ export async function fetchAllNewsOrg(formData, url) {
   console.log("Filtered data:", results);
   return results;
 }
+*/

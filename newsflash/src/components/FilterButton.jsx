@@ -1,7 +1,11 @@
+//Library Imports
 import { useContext } from "react"
-import { HomeContext } from "../Contexts/HomeContext"
+import { HomeContext } from "../Data-Management/HomeContext"
 import Select from "react-select"
+// Local Imports
+import {isSourceSelected, isCategorySelected} from "../constants/index"
 import Handlers from "../utilities/handlers";
+
 const FilterButton = () =>{
     const {formData, sourcesData} = useContext(HomeContext)
     const {handleCategoryChange, handleOptionChange, handleEndDateChange, handleSourceChange, handleStartDateChange } = Handlers() 
@@ -16,18 +20,16 @@ const FilterButton = () =>{
     return(
         <>
         <Select
-          isMulti
           value={formData.selectedOptions}
           onChange={handleOptionChange}
           options={[
             { value: 'sources', label: 'Sources' },
             { value: 'categories', label: 'Categories' },
-            { value: 'dates', label: 'Dates' }
           ]}
           styles={customStyles}
         />
 
-        {formData.selectedOptions.some(option => option.value === 'sources') && (
+        {(isSourceSelected(formData.selectedOptions)) && (
           <div>
             <label htmlFor="source">Select sources:</label>
             <Select
@@ -42,7 +44,7 @@ const FilterButton = () =>{
           </div>
         )}
 
-        {formData.selectedOptions.some(option => option.value === 'categories') && (
+        {(isCategorySelected(formData.selectedOptions)) && (
           <div>
             <label htmlFor="category">Select categories:</label>
             <Select
@@ -64,7 +66,6 @@ const FilterButton = () =>{
           </div>
         )}
 
-        {formData.selectedOptions.some(option => option.value === 'dates') && (
           <div>
             <label htmlFor="startDate">From:</label>
             <input
@@ -84,7 +85,6 @@ const FilterButton = () =>{
             />
           </div>
 
-        )}
     </>)
 }
 export default FilterButton
