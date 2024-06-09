@@ -1,6 +1,6 @@
 //Library Imports
 import { useContext } from "react"
-import { HomeContext } from "../Data-Management/HomeContext"
+import { HomeContext } from "../state/HomeContext"
 import Select from "react-select"
 // Local Imports
 import {isSourceSelected, isCategorySelected} from "../constants/index"

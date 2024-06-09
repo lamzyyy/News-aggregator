@@ -1,7 +1,7 @@
 // Library Imports
 import { useContext, useEffect } from "react";
 // Local Imports
-import { HomeContext } from "../Data-Management/HomeContext";
+import { HomeContext } from "../state/HomeContext";
 import { isSourceSelected, isCategorySelected } from "../constants/index";
 
 const useResetOptions = () => {

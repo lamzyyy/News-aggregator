@@ -2,7 +2,7 @@
 import { useState, useContext, useEffect } from "react";
 
 // Local Imports
-import { HomeContext } from "../Data-Management/HomeContext";
+import { HomeContext } from "../state/HomeContext";
 import useResetOptions from "../hooks/useResetOptions";
 import FilterButton from "./FilterButton";
 import { buildNewsOrgUrl } from "../utilities/Url-Builder";
