@@ -18,7 +18,7 @@ function HomeProvider({ children }) {
     const { availableSources, sourceLoading, sourceError } = useFetchSources();
     const sourcesData = { availableSources, sourceLoading, sourceError };
 
-    const [pageNumber, setPageNumber] = useState(1);
+    const [pageNumber, setPageNumber] = useState(0);
     const [hasMorePages, setHasMorePages] = useState(true);
 
     return (

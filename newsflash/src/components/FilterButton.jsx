@@ -23,6 +23,7 @@ const FilterButton = () =>{
           value={formData.selectedOptions}
           onChange={handleOptionChange}
           options={[
+            { value: 'None', label: 'Choose A Filter' },
             { value: 'sources', label: 'Sources' },
             { value: 'categories', label: 'Categories' },
           ]}

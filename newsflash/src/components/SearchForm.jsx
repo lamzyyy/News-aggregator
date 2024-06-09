@@ -8,6 +8,7 @@ import FilterButton from "./FilterButton";
 import { buildNewsOrgUrl } from "../utilities/Url-Builder";
 import { fetchNewsOrgPage } from "../utilities/api"
 import { maximumPagesAllowed, maxPageSize, defaultPage} from "../constants";
+import NewsCard from "./NewsCard";
 
 function SearchForm() {
   useResetOptions();
@@ -54,10 +55,11 @@ function SearchForm() {
 
   return (
     <div>
-      <h1>Search News</h1>
+      <h1 className="mb-4 text-2xl">Search News</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="keyword">Keyword:</label>
         <input
+          className="border-2 border-gray-500 rounded-md m-2 p-2 w-1/2"
           type="text"
           id="keyword"
           value={formData.keyword}
@@ -67,13 +69,28 @@ function SearchForm() {
           required
         />
         <div>
-          <button type="submit" onClick={() => {
-            setPageNumber(1);
-            setHasMorePages(true);
-          }}>Search</button>
-          {hasMorePages && (<button onClick={handleNextPage}>Next Page</button>)}
-          { pageNumber !== defaultPage && (<button onClick={handlePreviousPage}>Previous Page</button>)}
-          </div>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+            type="submit"
+            onClick={() => {
+              setPageNumber(1);
+              setHasMorePages(true);
+            }}
+          >
+            Search
+          </button>
+          {hasMorePages && pageNumber !== 0 && (
+            <button 
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+            onClick={handleNextPage}
+            >Next Page</button>
+          )}
+          {pageNumber !== defaultPage && pageNumber > defaultPage && (
+            <button 
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2" 
+            onClick={handlePreviousPage}>Previous Page</button>
+          )}
+        </div>
         <div>
           <FilterButton />
         </div>
@@ -81,13 +98,15 @@ function SearchForm() {
 
       <div>
         {news.map((article, index) => (
-          <div key={index}>
-            <h2>{article.title}</h2>
-            <p>{article.description}</p>
-            <a href={article.url} target="_blank" rel="noopener noreferrer">
-              Read More
-            </a>
-          </div>
+          <NewsCard
+            key={index}
+            author={article.author}
+            title={article.title}
+            content={article.content}
+            description={article.description}
+            url={article.url}
+            imageUrl={article.urlToImage}
+          />
         ))}
       </div>
     </div>
