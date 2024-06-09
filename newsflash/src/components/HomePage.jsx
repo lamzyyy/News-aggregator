@@ -1,6 +1,6 @@
 // Local Imports
 import SearchForm from "./SearchForm";
-import { HomeProvider } from "../Data-Management/HomeContext";
+import { HomeProvider } from "../state/HomeContext";
 
 function HomePage() {
   return (
