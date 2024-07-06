@@ -15,6 +15,9 @@ const Handlers = () => {
     };
 
     const handleCategoryChange = (selectedOptions) => {
+        if (selectedOptions === null) {
+            return;
+        }
         setFormData({ ...formData, categories: selectedOptions.value});
 
     };

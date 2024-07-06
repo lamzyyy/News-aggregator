@@ -27,4 +27,7 @@ function HomeProvider({ children }) {
         </HomeContext.Provider>
     );
 }
+// hard to understand the code and context of the code, so we need to add comments to the code
+// need to add default value to the parts of the code.
+//
 export { HomeProvider };

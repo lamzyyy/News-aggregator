@@ -8,7 +8,7 @@ import FilterButton from "./FilterButton";
 import { buildNewsOrgUrl } from "../utilities/Url-Builder";
 import { fetchNewsOrgPage } from "../utilities/api"
 import { maximumPagesAllowed, maxPageSize, defaultPage} from "../constants";
-import NewsCard from "./NewsCard";
+import CardContainer from "./CardContainer";
 
 function SearchForm() {
   useResetOptions();
@@ -49,7 +49,7 @@ function SearchForm() {
     }*/
     
     filteredNews = await fetchNewsOrgPage(formData, finalUrl, pageNumber);
-    console.log(finalUrl)
+    filteredNews = filteredNews.filter(item => item.content !== "[Removed]");
     setNews(filteredNews)
   };
 
@@ -95,20 +95,7 @@ function SearchForm() {
           <FilterButton />
         </div>
       </form>
-
-      <div>
-        {news.map((article, index) => (
-          <NewsCard
-            key={index}
-            author={article.author}
-            title={article.title}
-            content={article.content}
-            description={article.description}
-            url={article.url}
-            imageUrl={article.urlToImage}
-          />
-        ))}
-      </div>
+      <CardContainer news={news} />
     </div>
   );
 }
