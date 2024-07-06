@@ -77,8 +77,8 @@ const FilterButton = () =>{
         </div>
       )}
 
-      <div className="flex justify-center">
-        <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-4">
+      <div className="flex justify-center mb-2">
+        <div className="flex flex-col space-y-2 md:flex-row md:space-y-2 md:space-x-4">
           <label htmlFor="startDate">From:</label>
           <input
             type="date"
