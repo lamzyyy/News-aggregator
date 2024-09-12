@@ -71,7 +71,7 @@ Before running the application, you'll need to set up your Google News API key.
 2. **Add your API key to the `.env` file:**
 
    ```env
-   VITE_NEWS_API_KEY=your_google_news_api_key_here
+   VITE_API_KEY_1=your_google_news_api_key_here
    ```
 
    Make sure to replace `your_google_news_api_key_here` with your actual API key.
