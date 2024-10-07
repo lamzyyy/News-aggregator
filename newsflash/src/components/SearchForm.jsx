@@ -19,7 +19,7 @@ function SearchForm() {
   const { formData, setFormData, pageNumber, setPageNumber, hasMorePages, setHasMorePages } = useContext(HomeContext);
   const [news, setNews] = useState([]);
   const [finalUrl, setFinalUrl] = useState("");
-  console.log(pageNumber)
+  // console.log(pageNumber) //used for debugging
   
   /**
    * Handles the next page button click event.

@@ -44,7 +44,7 @@ export const buildNewsOrgUrl = (formData) => {
     finalUrl += `&apiKey=${VITE_API_KEY_1}`;
     
     // Log the final URL for debugging purposes
-    console.log(finalUrl);
+    //console.log(finalUrl); // used for debugging
     
     // Return the final URL
     return finalUrl;
