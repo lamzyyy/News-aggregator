@@ -1,6 +1,13 @@
 // Library Imports
 import axios from "axios";
 
+/**
+ * Fetches news data from the specified URL.
+ *
+ * @param {object} formData - The form data to be sent with the request.
+ * @param {string} finalUrl - The final URL to fetch the news data from.
+ * @returns {Promise<Array>} - A promise that resolves to an array of fetched news articles.
+ */
 const fetchNewsOrg = async (formData, finalUrl) => {
   let fetchedData = []; // Define and initialize filteredData outside the try block
   try {
@@ -12,6 +19,14 @@ const fetchNewsOrg = async (formData, finalUrl) => {
   return fetchedData;
 };
 
+/**
+ * Fetches news data from a specific page of a news organization.
+ *
+ * @param {object} formData - The form data to be sent with the request.
+ * @param {string} url - The base URL for fetching news data.
+ * @param {number} pageNumber - The page number to fetch data from.
+ * @returns {Promise<any>} - A promise that resolves to the fetched news data.
+ */
 export async function fetchNewsOrgPage(formData, url, pageNumber) {
   const newUrl = `${url}&page=${pageNumber}`; // Add page number and page size to the URL
   let fetchedData = await fetchNewsOrg(formData, newUrl);
@@ -19,25 +34,3 @@ export async function fetchNewsOrgPage(formData, url, pageNumber) {
   console.log(fetchedData); 
   return fetchedData;
 }
-/*
-export async function fetchAllNewsOrg(formData, url) {
-  let results = [];
-  let pageNumber = 1;
-  let fetchedData;
-
-  do {
-    const newUrl = `${url}&page=${pageNumber}`; 
-    fetchedData = await fetchNewsOrg(formData, newUrl);
-    if (formData.sources.length > 0) {
-      fetchedData = fetchedData.filter((article) =>
-        formData.sources.includes(article.source.id),
-      );
-    }
-    results = [...results, ...fetchedData];
-    pageNumber++;
-  } while (fetchedData.length > 0 && pageNumber <= 5); // Continue fetching while there are results
-
-  console.log("Filtered data:", results);
-  return results;
-}
-*/

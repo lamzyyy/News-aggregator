@@ -10,6 +10,10 @@ import { fetchNewsOrgPage } from "../utilities/api"
 import { maximumPagesAllowed, maxPageSize, defaultPage} from "../constants";
 import CardContainer from "./CardContainer";
 
+/**
+ * SearchForm component for searching news articles.
+ * @returns {JSX.Element} The SearchForm component.
+ */
 function SearchForm() {
   useResetOptions();
   const { formData, setFormData, pageNumber, setPageNumber, hasMorePages, setHasMorePages } = useContext(HomeContext);
@@ -17,6 +21,10 @@ function SearchForm() {
   const [finalUrl, setFinalUrl] = useState("");
   console.log(pageNumber)
   
+  /**
+   * Handles the next page button click event.
+   * @returns {Promise<void>} A promise that resolves when the next page is loaded.
+   */
   const handleNextPage = async () => {
     if (pageNumber < maximumPagesAllowed){
       setPageNumber(prevPageNumber => prevPageNumber + 1);
@@ -28,6 +36,11 @@ function SearchForm() {
       }
     }
   };
+
+  /**
+   * Handles the previous page button click event.
+   * @returns {Promise<void>} A promise that resolves when the previous page is loaded.
+   */
   const handlePreviousPage = async () => {
     if (pageNumber > defaultPage) {
       setPageNumber(prevPageNumber => prevPageNumber - 1);
@@ -41,10 +54,15 @@ function SearchForm() {
     setFinalUrl(buildNewsOrgUrl(formData));
   }, [formData]);
 
+  /**
+   * Handles the form submission event.
+   * @param {Event} e - The form submission event.
+   * @returns {Promise<void>} A promise that resolves when the form is submitted.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     let filteredNews = [];
-   /* if (formData.categories.length && formData.sources.length) {
+    /* if (formData.categories.length && formData.sources.length) {
       filteredNews = await fetchAllNewsOrg(formData, finalUrl);
     }*/
     
@@ -55,8 +73,10 @@ function SearchForm() {
 
   return (
     <div>
+      {/* Search News */}
       <h1 className="mb-4 text-2xl">Search News</h1>
       <form onSubmit={handleSubmit}>
+        {/* Keyword Input */}
         <label htmlFor="keyword">Keyword:</label>
         <input
           className="border-2 border-gray-500 rounded-md m-2 p-2 w-1/2"
@@ -69,6 +89,7 @@ function SearchForm() {
           required
         />
         <div>
+          {/* Search Button */}
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
             type="submit"
@@ -79,12 +100,14 @@ function SearchForm() {
           >
             Search
           </button>
+          {/* Next Page Button */}
           {hasMorePages && pageNumber !== 0 && (
             <button 
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
             onClick={handleNextPage}
             >Next Page</button>
           )}
+          {/* Previous Page Button */}
           {pageNumber !== defaultPage && pageNumber > defaultPage && (
             <button 
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2" 
@@ -92,9 +115,11 @@ function SearchForm() {
           )}
         </div>
         <div>
+          {/* Filter Button */}
           <FilterButton />
         </div>
       </form>
+      {/* Card Container */}
       <CardContainer news={news} />
     </div>
   );

@@ -4,7 +4,11 @@ import ResultEnd from './ResultEnd';
 import { HomeContext } from "../state/HomeContext";
 import { useContext } from "react";
 
-// CardContainer component
+/**
+ * Renders a container component that displays news articles.
+ * @param {Object[]} news - The array of news articles.
+ * @returns {JSX.Element} The rendered CardContainer component.
+ */
 const CardContainer = ({ news }) => {
     const { pageNumber } = useContext(HomeContext);
     return (
@@ -14,7 +18,7 @@ const CardContainer = ({ news }) => {
                 <ResultEnd /> // Render ResultEnd component
             ) : (
                 <div className="grid grid-rows-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" style={{ gridAutoRows: 'minmax(100px, auto)' }}>
-                    {/* Map through the news articles and render NewsCard component for each article */}
+                    {/* Otherwise map through the news articles and render NewsCard component for each article */}
                     {news.map((article, index) => (
                         <NewsCard
                             key={index}
