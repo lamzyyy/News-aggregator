@@ -1,6 +1,6 @@
 // Local Imports
 import SearchForm from "./SearchForm";
-import { HomeProvider } from "../state/HomeContext";
+import { HomeProvider} from "../state/HomeContext";
 
 // Define the HomePage component
 /**

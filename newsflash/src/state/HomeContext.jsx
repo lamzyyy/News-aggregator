@@ -2,7 +2,7 @@
 import React, { createContext, useState } from 'react';
 // Local Imports
 import useFetchSources from '../hooks/useFetchSources'; 
-
+export const HomeContext = createContext();
 /**
  * Context for the Home component.
  * @typedef {Object} HomeContext
@@ -48,4 +48,4 @@ function HomeProvider({ children }) {
     );
 }
 
-export { HomeProvider };
+export { HomeProvider};
