@@ -30,7 +30,7 @@ const fetchNewsOrg = async (formData, finalUrl) => {
 export async function fetchNewsOrgPage(formData, url, pageNumber) {
   const newUrl = `${url}&page=${pageNumber}`; // Add page number and page size to the URL
   let fetchedData = await fetchNewsOrg(formData, newUrl);
-  console.log(newUrl);
-  console.log(fetchedData); 
+  //console.log(newUrl); // used for debugging
+  //console.log(fetchedData); // used for debugging
   return fetchedData;
 }
